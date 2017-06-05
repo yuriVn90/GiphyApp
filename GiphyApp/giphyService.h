@@ -10,4 +10,8 @@
 
 @interface giphyService : NSObject
 
++(instancetype)sharedService;
+
+-(void)getHomeGifs:(void (^) (NSArray * results, NSError * error)) block ;
+
 @end

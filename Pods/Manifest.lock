@@ -1,0 +1,24 @@
+PODS:
+  - AFNetworking/Serialization (2.3.1)
+  - Giphy-iOS (0.1.1):
+    - AFNetworking/Serialization (~> 2.3.1)
+  - JSONModel (1.0.2)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+
+DEPENDENCIES:
+  - AFNetworking/Serialization (~> 2.3.1)
+  - Giphy-iOS
+  - JSONModel (~> 1.0.2)
+  - SDWebImage
+
+SPEC CHECKSUMS:
+  AFNetworking: 05b9f6e3aa5ac45bc383b4bb108ef338080a26c7
+  Giphy-iOS: 95ce787749b73435524f40f700f026db5dfe251b
+  JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+
+PODFILE CHECKSUM: e486780f940f0987f1dcd3e64a5f2804ef3e6f4f
+
+COCOAPODS: 1.2.0

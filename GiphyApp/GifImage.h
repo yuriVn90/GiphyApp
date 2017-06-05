@@ -6,8 +6,13 @@
 //  Copyright © 2017 Yuri V. All rights reserved.
 //
 
-#import <JSONModel/JSONModel.h>
+#import <Foundation/Foundation.h>
+#import "AXCGiphyImageDownsampled.h"
 
-@interface GifImage : JSONModel
+
+
+@interface GifImage : AXCGiphyImageDownsampled
+
+
 
 @end
