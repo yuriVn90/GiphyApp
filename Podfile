@@ -5,10 +5,10 @@ target 'GiphyApp' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-	pod ‘SDWebImage’
+	pod 'SDWebImage'
+    pod 'SDWebImage/GIF'
 	pod 'JSONModel', '~> 1.0.2'
-	pod "Giphy-iOS"
-	pod 'AFNetworking/Serialization', '~> 2.3.1'
+	pod 'AFNetworking', '~> 3.0'
 
   # Pods for GiphyApp
 

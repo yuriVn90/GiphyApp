@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class GiphyImage;
+
 @interface giphyService : NSObject
 
-+(instancetype)sharedService;
++(nonnull instancetype)sharedService;
 
--(void)getHomeGifs:(void (^) (NSArray * results, NSError * error)) block ;
+//Either results or error is null
+-(void)getHomeGifs:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block;
 
 @end

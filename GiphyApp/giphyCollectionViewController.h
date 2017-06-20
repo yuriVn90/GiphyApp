@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface giphyCollectionViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface giphyCollectionViewController : UIViewController
 
 @end

@@ -1,24 +1,40 @@
 PODS:
-  - AFNetworking/Serialization (2.3.1)
-  - Giphy-iOS (0.1.1):
-    - AFNetworking/Serialization (~> 2.3.1)
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - FLAnimatedImage (1.0.12)
   - JSONModel (1.0.2)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
+  - SDWebImage/GIF (4.0.0):
+    - FLAnimatedImage (~> 1.0)
+    - SDWebImage/Core
 
 DEPENDENCIES:
-  - AFNetworking/Serialization (~> 2.3.1)
-  - Giphy-iOS
+  - AFNetworking (~> 3.0)
   - JSONModel (~> 1.0.2)
   - SDWebImage
+  - SDWebImage/GIF
 
 SPEC CHECKSUMS:
-  AFNetworking: 05b9f6e3aa5ac45bc383b4bb108ef338080a26c7
-  Giphy-iOS: 95ce787749b73435524f40f700f026db5dfe251b
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   JSONModel: 6ffcb4ffa3659c9e9a2e5d45d6c7705bab187c03
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
 
-PODFILE CHECKSUM: e486780f940f0987f1dcd3e64a5f2804ef3e6f4f
+PODFILE CHECKSUM: c13caf0ff39685f0a7ec911f353a378512b853be
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.1.1

@@ -1,1 +1,0 @@
-../../../Giphy-iOS/Pod/Classes/AXCGiphyImageOriginal.h
