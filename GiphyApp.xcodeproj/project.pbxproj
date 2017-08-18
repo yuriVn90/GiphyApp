@@ -228,12 +228,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BA1A2C81EC452CF001CCE7E /* Build configuration list for PBXNativeTarget "GiphyApp" */;
 			buildPhases = (
+				1DF2EB65D7731B9FAEC2DCB3 /* 📦 Check Pods Manifest.lock */,
 				60E6CAB14D3B3691E925E57F /* [CP] Check Pods Manifest.lock */,
 				8BA1A2971EC452CF001CCE7E /* Sources */,
 				8BA1A2981EC452CF001CCE7E /* Frameworks */,
 				8BA1A2991EC452CF001CCE7E /* Resources */,
 				704F9B5BE30A42F84BA0EFAC /* [CP] Embed Pods Frameworks */,
 				D0463CE0413D92B2C7F48409 /* [CP] Copy Pods Resources */,
+				F3D157200A9E5DEB810F84E6 /* 📦 Embed Pods Frameworks */,
+				1CFE3BB5DFB5C063ADB4865A /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -248,12 +251,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BA1A2CB1EC452CF001CCE7E /* Build configuration list for PBXNativeTarget "GiphyAppTests" */;
 			buildPhases = (
+				3FA7DE51FA220DA042984FC3 /* 📦 Check Pods Manifest.lock */,
 				7468E80D470B1FA59010FBED /* [CP] Check Pods Manifest.lock */,
 				8BA1A2B01EC452CF001CCE7E /* Sources */,
 				8BA1A2B11EC452CF001CCE7E /* Frameworks */,
 				8BA1A2B21EC452CF001CCE7E /* Resources */,
 				DB52F5C38730729AFD9E6779 /* [CP] Embed Pods Frameworks */,
 				7CFD2264C5466F4C1F02828B /* [CP] Copy Pods Resources */,
+				AEBAD747E42DA0415899599E /* 📦 Embed Pods Frameworks */,
+				CEFF3A750AD91261F9C3C102 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -269,12 +275,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BA1A2CE1EC452CF001CCE7E /* Build configuration list for PBXNativeTarget "GiphyAppUITests" */;
 			buildPhases = (
+				20B807A81E20F6A17A5099BA /* 📦 Check Pods Manifest.lock */,
 				7B4AA88073D6DEF3FDDBE575 /* [CP] Check Pods Manifest.lock */,
 				8BA1A2BB1EC452CF001CCE7E /* Sources */,
 				8BA1A2BC1EC452CF001CCE7E /* Frameworks */,
 				8BA1A2BD1EC452CF001CCE7E /* Resources */,
 				7D7DFC67A4B14657DB0C64CC /* [CP] Embed Pods Frameworks */,
 				11A6D23772FFF229D13B3140 /* [CP] Copy Pods Resources */,
+				06D63D4080E77D3E4C4ACC86 /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -359,6 +367,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		06D63D4080E77D3E4C4ACC86 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyAppUITests/Pods-GiphyAppUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		11A6D23772FFF229D13B3140 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -372,6 +395,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyAppUITests/Pods-GiphyAppUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1CFE3BB5DFB5C063ADB4865A /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyApp/Pods-GiphyApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1DF2EB65D7731B9FAEC2DCB3 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		20B807A81E20F6A17A5099BA /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		3FA7DE51FA220DA042984FC3 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		60E6CAB14D3B3691E925E57F /* [CP] Check Pods Manifest.lock */ = {
@@ -464,6 +547,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyAppUITests/Pods-GiphyAppUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		AEBAD747E42DA0415899599E /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyAppTests/Pods-GiphyAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CEFF3A750AD91261F9C3C102 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyAppTests/Pods-GiphyAppTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D0463CE0413D92B2C7F48409 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -492,6 +605,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyAppTests/Pods-GiphyAppTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3D157200A9E5DEB810F84E6 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GiphyApp/Pods-GiphyApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

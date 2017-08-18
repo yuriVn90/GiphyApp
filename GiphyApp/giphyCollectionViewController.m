@@ -15,16 +15,19 @@
 
 @property (strong, nonatomic) UICollectionView *collectionView;
 @property (strong, nonatomic) NSArray<GiphyImage *> *gifList;
+@property (strong, nonatomic) UISearchBar *searchBar;
 
 @end
 
 @implementation giphyCollectionViewController
 
+static const float CELL_HEIGHT = 140;
+
 -(void)viewDidLoad {
     [super viewDidLoad];
     
     UICollectionViewFlowLayout *vfl = [[UICollectionViewFlowLayout alloc] init];
-    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height - 20) collectionViewLayout:vfl];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 60, self.view.frame.size.width, self.view.frame.size.height - 60) collectionViewLayout:vfl];
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
@@ -37,6 +40,9 @@
     
     self.collectionView.refreshControl = [[UIRefreshControl alloc] init];
     [self.collectionView.refreshControl addTarget:self action:@selector(refreshControlTriggered) forControlEvents:UIControlEventValueChanged];
+    
+    self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 40)];
+    [self.view addSubview:self.searchBar];
     
     self.collectionView.backgroundColor = [UIColor whiteColor];
     [self loadPage];
@@ -65,10 +71,17 @@
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    GiphyImage *gif = self.gifList[indexPath.row];
+    CGFloat cellWidth, cellHeight;
     
-    CGFloat cellWidth = self.view.frame.size.width/2 - 5;
-    CGFloat cellHeight = [GifCell heightOfCell:cellWidth forGif:gif];
+    if (indexPath.row % 5 < 2) {
+        cellWidth = self.view.frame.size.width/2 - 5;
+    }
+    
+    else {
+        cellWidth = self.view.frame.size.width/3 - 7;
+    }
+    
+    cellHeight = CELL_HEIGHT;
     
     return CGSizeMake(cellWidth, cellHeight);
 }

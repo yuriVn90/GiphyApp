@@ -9,7 +9,7 @@ target 'GiphyApp' do
     pod 'SDWebImage/GIF'
 	pod 'JSONModel', '~> 1.0.2'
 	pod 'AFNetworking', '~> 3.0'
-
+	
   # Pods for GiphyApp
 
   target 'GiphyAppTests' do
