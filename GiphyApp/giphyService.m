@@ -39,18 +39,35 @@ static NSString * const GiphyKey = @"dc6zaTOxFJmzC";
 }
 
 -(void)getHomeGifs:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block {
-    [self.giphySessionManager GET:@"trending" parameters:@{@"api_key": GiphyKey} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [self getTrendingGifsWithOffset:@"0" withBlock:block];
+}
+
+-(void)getTrendingGifsWithOffset:(NSString * _Nonnull)offset withBlock:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block {
+    [self.giphySessionManager GET:@"trending" parameters:@{@"api_key": GiphyKey, @"offset": offset} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray<NSDictionary *> *data = responseObject[@"data"];
-        
         NSMutableArray<GiphyImage *> *images = [NSMutableArray arrayWithCapacity:data.count];
-        
         for (NSDictionary *imageData in data) {
             GiphyImage *image = [[GiphyImage alloc] initWithDictionary:imageData error:nil];
             if (image) {
                 [images addObject:image];
             }
         }
-        
+        block(images, nil);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        block(nil, error);
+    }];
+}
+
+-(void)getGifsFromSearchText:(NSString * _Nonnull)searchText withBlock:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block {
+    [self.giphySessionManager GET:@"search" parameters:@{@"api_key": GiphyKey, @"q": searchText} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSArray<NSDictionary *> *data = responseObject[@"data"];
+        NSMutableArray<GiphyImage *> *images = [NSMutableArray arrayWithCapacity:data.count];
+        for (NSDictionary *imageData in data) {
+            GiphyImage *image = [[GiphyImage alloc] initWithDictionary:imageData error:nil];
+            if (image) {
+                [images addObject:image];
+            }
+        }
         block(images, nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         block(nil, error);
