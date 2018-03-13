@@ -64,7 +64,11 @@ static const float CELL_HEIGHT = 140;
 }
 
 - (void)refreshControlTriggered {
-    [self loadPage];
+    if ([self.searchBar.text isEqualToString:@""]) {
+        [self loadPage];
+    } else {
+        [self searchForGifs:self.searchBar.text];
+    }
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
