@@ -15,10 +15,9 @@
 +(nonnull instancetype)sharedService;
 
 //Either results or error is null
--(void)getHomeGifs:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block;
+//searchQuery is nil if not needed
+-(void)getFirstPageWithSearchQueryIfNeeded:(NSString * _Nullable)searchQuery withBlock:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block;
 
--(void)getTrendingGifsWithOffset:(NSString * _Nonnull)offset withBlock:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block;
-
--(void)getGifsFromSearchText:(NSString * _Nonnull)searchText withBlock:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block;
+-(void)getNextPageWithSearchQueryIfNeeded:(NSString * _Nullable)searchQuery withOffset:(NSString * _Nonnull)offset withBlock:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block;
 
 @end

@@ -41,6 +41,9 @@ static const float CELL_HEIGHT = 140;
     [self.collectionView.refreshControl addTarget:self action:@selector(refreshControlTriggered) forControlEvents:UIControlEventValueChanged];
     self.collectionView.backgroundColor = [UIColor whiteColor];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+    [self.view addGestureRecognizer:tap];
+    
     self.searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, 40)];
     [self.view addSubview:self.searchBar];
     self.searchBar.delegate = self;
@@ -48,17 +51,40 @@ static const float CELL_HEIGHT = 140;
     [self loadPage];
 }
 
-
 -(void)loadPage {
     [self.collectionView.refreshControl beginRefreshing];
-
-    [[giphyService sharedService] getHomeGifs:^(NSArray <GiphyImage *> *list, NSError *error) {
+    
+    [[giphyService sharedService] getFirstPageWithSearchQueryIfNeeded:nil withBlock:^(NSArray <GiphyImage *> *list, NSError *error) {
         [self.collectionView.refreshControl endRefreshing];
         if (error) {
             NSLog(@"Failed getting feed. %@", error);
             return;
         }
+        NSMutableArray *gifs = [self.gifList mutableCopy];
+        for (GiphyImage *gif in list) {
+            [gifs addObject:gif];
+        }
         self.gifList = list;
+        [self.collectionView reloadData];
+    }];
+}
+
+-(void)loadNextPage:(NSString *)offset withSearchTextIfNeeded:(NSString *)searchText {
+    [self.collectionView.refreshControl beginRefreshing];
+    
+    searchText = [searchText isEqualToString:@""] ? nil : searchText;
+    
+    [[giphyService sharedService] getNextPageWithSearchQueryIfNeeded:searchText withOffset:offset withBlock:^(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error) {
+        [self.collectionView.refreshControl endRefreshing];
+        if (error) {
+            NSLog(@"Failed getting feed. %@", error);
+            return;
+        }
+        NSMutableArray *gifs = [self.gifList mutableCopy];
+        for (GiphyImage *gif in results) {
+            [gifs addObject:gif];
+        }
+        self.gifList = gifs;
         [self.collectionView reloadData];
     }];
 }
@@ -70,6 +96,28 @@ static const float CELL_HEIGHT = 140;
         [self searchForGifs:self.searchBar.text];
     }
 }
+
+-(void)searchForGifs:(NSString *)searchText {
+    [self.collectionView.refreshControl beginRefreshing];
+    
+    [[giphyService sharedService] getFirstPageWithSearchQueryIfNeeded:searchText withBlock:^(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error) {
+        [self.collectionView.refreshControl endRefreshing];
+        if (error) {
+            NSLog(@"Failed getting search results. %@", error);
+            return;
+        }
+        self.gifList = results;
+        [self.collectionView reloadData];
+    }];
+}
+
+-(void)dismissKeyboard {
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
+    }
+}
+
+#pragma mark - UICollectionViewDelegate
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat cellWidth, cellHeight;
@@ -87,8 +135,6 @@ static const float CELL_HEIGHT = 140;
     return UIEdgeInsetsZero;
 }
 
-#pragma mark - UICollectionViewDataSource
-
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
@@ -97,11 +143,20 @@ static const float CELL_HEIGHT = 140;
     return self.gifList.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     GiphyImage *gif = self.gifList[indexPath.row];
     GifCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[GifCell cellIdentifier] forIndexPath:indexPath];
     [cell updateData:gif];
     return cell;
+}
+
+
+-(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.gifList.count - 1) {
+        NSLog(@"last cell appeared");
+        NSString *offset = [NSString stringWithFormat:@"%i", (int)self.gifList.count];
+        [self loadNextPage:offset withSearchTextIfNeeded:self.searchBar.text];
+    }
 }
 
 #pragma mark - UISearchBarDelegate
@@ -111,23 +166,10 @@ static const float CELL_HEIGHT = 140;
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-    NSLog(@"click");
      [self searchForGifs:searchBar.text];
     if ([searchBar isFirstResponder]) {
         [searchBar resignFirstResponder];
     }
-}
-     
--(void)searchForGifs:(NSString *)searchText {
-    [[giphyService sharedService] getGifsFromSearchText:searchText withBlock:^(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error) {
-        [self.collectionView.refreshControl endRefreshing];
-        if (error) {
-            NSLog(@"Failed getting search results. %@", error);
-            return;
-        }
-        self.gifList = results;
-        [self.collectionView reloadData];
-    }];
 }
 
 @end
