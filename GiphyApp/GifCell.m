@@ -44,11 +44,6 @@ static NSString * const GifCellCellIdentifier = @"GifCellCellIdentifier";
     }];
 }
 
-/*+(CGFloat)heightOfCell:(CGFloat)width forGif:(GiphyImage *)gif {
-    CGFloat proportion =  gif.images.fixed_width_downsampled.height.doubleValue / gif.images.fixed_width_downsampled.width.doubleValue;
-    return width * proportion;
-}*/
-
 +(NSString *)cellIdentifier {
     return GifCellCellIdentifier;
 }

@@ -14,8 +14,6 @@
 
 -(void)updateData:(GiphyImage *)gif;
 
-+(CGFloat)heightOfCell:(CGFloat)width forGif:(GiphyImage *)gif;
-
 +(NSString *)cellIdentifier;
 
 @end
