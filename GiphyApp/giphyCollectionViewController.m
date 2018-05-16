@@ -162,7 +162,12 @@ static const float CELL_HEIGHT = 140;
 #pragma mark - UISearchBarDelegate
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    NSLog(@"text editing");
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(reloadSearch) object:nil];
+    [self performSelector:@selector(reloadSearch) withObject:nil afterDelay:0.5];
+}
+
+-(void)reloadSearch {
+    [self searchForGifs:self.searchBar.text];
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {

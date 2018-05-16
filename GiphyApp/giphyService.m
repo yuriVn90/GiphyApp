@@ -41,7 +41,7 @@ static NSString * const GiphyKey = @"dc6zaTOxFJmzC";
 #pragma mark - Public methods
 
 -(void)getFirstPageWithSearchQueryIfNeeded:(NSString * _Nullable)searchQuery withBlock:(void(^ _Nonnull)(NSArray<GiphyImage *> * _Nullable results, NSError * _Nullable error))block {
-    if (searchQuery) {
+    if (searchQuery && ![searchQuery isEqualToString:@""]) {
         [self getGifsFromSearchText:searchQuery withOffset:@"0" withBlock:block];
     } else {
         [self getTrendingGifsWithOffset:@"0" withBlock:block];
