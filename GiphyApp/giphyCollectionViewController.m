@@ -121,7 +121,7 @@ static const float CELL_HEIGHT = 140;
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat cellWidth, cellHeight;
-    
+    //arange gifs in row of 3 and row of 2
     if (indexPath.row % 5 < 2) {
         cellWidth = self.view.frame.size.width/2 - 5;
     } else {
@@ -149,7 +149,6 @@ static const float CELL_HEIGHT = 140;
     [cell updateData:gif];
     return cell;
 }
-
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == self.gifList.count - 1) {
